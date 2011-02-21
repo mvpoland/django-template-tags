@@ -45,7 +45,7 @@ class CallNode(Node):
                 return ''
             else:
                 # Return result (will be printed in template node)
-                return escape(result)
+                return escape(result) if result else ''
 
         except VariableDoesNotExist:
             return 'VariableDoesNotExist error while calling function %s' % str(self.method)
