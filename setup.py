@@ -2,7 +2,6 @@ from setuptools import setup, find_packages
 
 setup(
     name = "django-template-tags",
-    version = "0.1.1",
     url = 'https://github.com/citylive/django-template-tags',
     license = 'BSD',
     description = "Some general, useful template tags.",

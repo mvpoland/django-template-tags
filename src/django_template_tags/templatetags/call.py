@@ -8,7 +8,8 @@ from cgi import escape
 # Note that the function itself is also resolved from the context.
 
 # If the context looks like:
-#    context = [ 'func': (lambda x,y: x+y), 'arg1': 4, 'arg2': 5 ]
+#    from django_template_tags.template_callable import template_callable
+#    context = [ 'func': template_callable(lambda x,y: x+y), 'arg1': 4, 'arg2': 5 ]
 
 # The following will print '9' in the template
 #    {% call result = func arg1 arg2 %}
@@ -35,9 +36,10 @@ class CallNode(Node):
 
             # Call method
             if method:
-                 result = method(*params)
+                # If
+                result = method(*params) if callable(method) else method.call(*params)
             else:
-                 result = None
+                result = None
 
             if self.result:
                 # Place result in context
